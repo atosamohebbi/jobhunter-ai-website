@@ -5,20 +5,20 @@ body {
   color: #1a1a1a;
 }
 
+/* CONTAINER */
 .container {
   max-width: 720px;
   margin: 80px auto;
   padding: 0 20px;
 }
 
-/* HERO */
-.hero h1 {
+/* HEADER */
+.header h1 {
   font-size: 36px;
-  line-height: 1.2;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.subtitle {
+.tagline {
   color: #6b6b6b;
   font-size: 16px;
   margin-bottom: 30px;
@@ -43,6 +43,7 @@ body {
   border-radius: 20px;
   margin-right: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .filters button.active {
@@ -59,12 +60,31 @@ body {
 /* JOB CARD */
 .job-card {
   background: white;
-  padding: 20px;
+  padding: 22px;
   border-radius: 14px;
   margin-top: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  transition: all 0.2s ease;
 }
 
+.job-card:hover {
+  transform: translateY(-2px);
+}
+
+/* TOP CARD (BEST MATCH) */
+.top-card {
+  border: 2px solid #b08968;
+  background: #fffaf5;
+}
+
+/* HEADER INSIDE CARD */
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* TITLE + COMPANY */
 .job-title {
   font-size: 18px;
   font-weight: 600;
@@ -72,78 +92,26 @@ body {
 
 .job-company {
   color: #888;
-  margin-bottom: 12px;
-}
-
-/* MATCH SECTION */
-.match-title {
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-
-.match-item {
-  font-size: 14px;
-  color: #444;
+  margin-top: 4px;
 }
 
 /* SCORE */
 .score {
-  margin-top: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #9a6a4d;
-}
-
-/* LINK */
-.job-link {
-  display: inline-block;
-  margin-top: 10px;
-  color: #1a1a1a;
-  text-decoration: none;
-  font-weight: 500;
-}
-.job-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.score {
-  font-weight: 600;
-  color: #c8a27c;
-}
-
-.badge {
-  margin-top: 8px;
-  font-size: 12px;
-  color: #c8a27c;
-}
-
-.job-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.score {
   font-weight: 600;
   color: #b08968;
 }
 
+/* BADGE */
 .badge {
   font-size: 12px;
   color: #b08968;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-.top-card {
-  border: 2px solid #b08968;
-  background: #fffaf5;
-}
-
+/* WHY SECTION */
 .why-title {
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 14px;
   margin-bottom: 6px;
 }
 
@@ -152,8 +120,28 @@ body {
   margin-bottom: 10px;
 }
 
+.why-list li {
+  margin-bottom: 4px;
+  color: #444;
+}
+
+/* CONFIDENCE TEXT */
 .confidence {
   font-size: 13px;
   color: #7a6a58;
   margin-bottom: 10px;
+}
+
+/* LINK */
+.job-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.job-link:hover {
+  opacity: 0.6;
 }
