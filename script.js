@@ -1,13 +1,6 @@
 let allJobs = [];
 let currentFilter = "all";
 
-// 👉 Your profile (this is your "AI input")
-const userProfile = {
-  yearsExperience: 3,
-  preferredRoles: ["product", "ux"],
-  domains: ["saas", "b2b", "developer tools"]
-};
-
 async function loadJobs() {
   try {
     const response = await fetch("jobs.json");
@@ -22,81 +15,31 @@ async function loadJobs() {
     renderJobs();
   } catch (error) {
     document.getElementById("loading").innerText = "Failed to load jobs.";
-    console.error(error);
   }
-}
-
-// 🧠 MATCH LOGIC
-function calculateMatch(job) {
-  let score = 0;
-  let reasons = [];
-
-  // Role match
-  if (job.tags.some(tag => userProfile.preferredRoles.includes(tag))) {
-    score += 30;
-    reasons.push("Matches your preferred role");
-  }
-
-  // Experience match
-  if (job.years_required <= userProfile.yearsExperience + 1) {
-    score += 30;
-    reasons.push("Fits your experience level");
-  } else {
-    score += 10;
-    reasons.push("Slight stretch opportunity");
-  }
-
-  // Domain match
-  if (userProfile.domains.includes(job.domain)) {
-    score += 25;
-    reasons.push("Relevant industry experience");
-  }
-
-  // Bonus
-  if (job.tags.includes("b2b")) {
-    score += 10;
-    reasons.push("B2B product experience");
-  }
-
-  // Cap score
-  score = Math.min(score, 95);
-
-  return { score, reasons };
 }
 
 function renderJobs() {
   const container = document.getElementById("jobs-container");
   container.innerHTML = "";
 
-  let jobsWithScores = allJobs.map(job => {
-    const match = calculateMatch(job);
-    return { ...job, ...match };
-  });
+  let filtered = allJobs;
 
-  // 🔥 Sort by best match
-  jobsWithScores.sort((a, b) => b.score - a.score);
-
-  let filteredJobs = jobsWithScores;
-
-  if (currentFilter === "product") {
-    filteredJobs = jobsWithScores.filter(job =>
-      job.tags.includes("product")
-    );
+  if (currentFilter !== "all") {
+    filtered = allJobs.filter(job => job.category === currentFilter);
   }
 
-  if (currentFilter === "ux") {
-    filteredJobs = jobsWithScores.filter(job =>
-      job.tags.includes("ux") || job.tags.includes("ui")
-    );
-  }
+  // sort by score (highest first)
+  filtered.sort((a, b) => b.score - a.score);
 
-  filteredJobs.forEach((job, index) => {
+  filtered.forEach((job, index) => {
     const div = document.createElement("div");
     div.className = "job-card";
 
-    const badge = index === 0 ? "⭐ Best Match" : "";
+    const isTop = index === 0;
 
     div.innerHTML = `
+      ${isTop ? `<div class="badge">⭐ Best match for you</div>` : ""}
+
       <div class="job-header">
         <div>
           <div class="job-title">${job.title}</div>
@@ -105,26 +48,41 @@ function renderJobs() {
         <div class="score">${job.score}%</div>
       </div>
 
-      <div class="badge">${badge}</div>
+      <div class="why-title">Why this matches you</div>
+      <ul class="why-list">
+        ${job.reasons.map(r => `<li>${r}</li>`).join("")}
+      </ul>
 
-      <div class="match-title">Why this matches you:</div>
-      ${job.reasons.map(r => `<div class="match-item">• ${r}</div>`).join("")}
+      <div class="confidence">
+        ${getConfidenceText(job.score)}
+      </div>
 
       <a href="${job.url}" target="_blank" class="job-link">
         View role →
       </a>
     `;
 
+    if (isTop) {
+      div.classList.add("top-card");
+    }
+
     container.appendChild(div);
   });
+}
+
+function getConfidenceText(score) {
+  if (score >= 90) return "🔥 Strong match based on your background";
+  if (score >= 70) return "👍 Solid fit with relevant experience";
+  if (score >= 50) return "⚡ Potential stretch opportunity";
+  return "💡 Lower match, but could be interesting";
 }
 
 function setFilter(filter) {
   currentFilter = filter;
 
-  document.querySelectorAll(".filters button").forEach(btn =>
-    btn.classList.remove("active")
-  );
+  document.querySelectorAll(".filters button").forEach(btn => {
+    btn.classList.remove("active");
+  });
 
   event.target.classList.add("active");
 
