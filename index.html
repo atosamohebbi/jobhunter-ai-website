@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JobHunter AI Agent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <h1>JobHunter</h1>
+      <p class="tagline">AI-curated product design roles</p>
+    </div>
+
+    <div class="meta">
+      <p id="last-updated"></p>
+    </div>
+
+    <div class="filters">
+      <button onclick="setFilter('all')" class="active">All</button>
+      <button onclick="setFilter('product')">Product</button>
+      <button onclick="setFilter('ux')">UX/UI</button>
+    </div>
+
+    <p id="loading">Scanning job sources and filtering relevance...</p>
+
+    <div id="jobs-container"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

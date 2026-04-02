@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f8f6f3;
+  color: #1a1a1a;
+}
+
+.container {
+  max-width: 720px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+/* HERO */
+.hero h1 {
+  font-size: 36px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #6b6b6b;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+/* META */
+.meta {
+  font-size: 12px;
+  color: #9a9a9a;
+  margin-bottom: 20px;
+}
+
+/* FILTERS */
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters button {
+  border: none;
+  background: #e7dfd8;
+  padding: 8px 14px;
+  border-radius: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.filters button.active {
+  background: #c8a27c;
+  color: white;
+}
+
+/* LOADING */
+#loading {
+  color: #9a6a4d;
+  font-size: 14px;
+}
+
+/* JOB CARD */
+.job-card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.job-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.job-company {
+  color: #888;
+  margin-bottom: 12px;
+}
+
+/* MATCH SECTION */
+.match-title {
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.match-item {
+  font-size: 14px;
+  color: #444;
+}
+
+/* SCORE */
+.score {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9a6a4d;
+}
+
+/* LINK */
+.job-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 500;
+}
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score {
+  font-weight: 600;
+  color: #c8a27c;
+}
+
+.badge {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #c8a27c;
+}

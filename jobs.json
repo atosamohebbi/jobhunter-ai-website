@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Senior Product Designer",
+    "company": "Stripe",
+    "url": "https://stripe.com/jobs",
+    "experience_level": "senior",
+    "domain": "fintech",
+    "tags": ["product", "b2b", "payments"],
+    "years_required": 5
+  },
+  {
+    "title": "Product Designer",
+    "company": "Linear",
+    "url": "https://linear.app/jobs",
+    "experience_level": "mid",
+    "domain": "saas",
+    "tags": ["product", "b2b", "tools"],
+    "years_required": 3
+  },
+  {
+    "title": "UX/UI Designer",
+    "company": "Vercel",
+    "url": "https://vercel.com/careers",
+    "experience_level": "mid",
+    "domain": "developer tools",
+    "tags": ["ux", "ui", "frontend"],
+    "years_required": 3
+  },
+  {
+    "title": "Staff Product Designer",
+    "company": "Figma",
+    "url": "https://figma.com/careers",
+    "experience_level": "staff",
+    "domain": "design tools",
+    "tags": ["product", "design systems"],
+    "years_required": 7
+  },
+  {
+    "title": "Lead UX Designer",
+    "company": "Shopify",
+    "url": "https://shopify.com/careers",
+    "experience_level": "lead",
+    "domain": "ecommerce",
+    "tags": ["ux", "research"],
+    "years_required": 6
+  }
+]
