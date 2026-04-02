@@ -3,7 +3,7 @@ let currentFilter = "all";
 
 async function loadJobs() {
   try {
-    const response = await fetch("jobs.json");
+    const response = await fetch("./jobs.json");
     allJobs = await response.json();
 
     // enrich jobs with score + reasons
