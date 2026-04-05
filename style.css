@@ -5,33 +5,28 @@ body {
   color: #1a1a1a;
 }
 
-/* CONTAINER */
 .container {
   max-width: 720px;
   margin: 80px auto;
   padding: 0 20px;
 }
 
-/* HEADER */
 .header h1 {
   font-size: 36px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .tagline {
-  color: #6b6b6b;
-  font-size: 16px;
-  margin-bottom: 30px;
+  color: #7a6a58;
+  margin-bottom: 20px;
 }
 
-/* META */
 .meta {
   font-size: 12px;
   color: #9a9a9a;
   margin-bottom: 20px;
 }
 
-/* FILTERS */
 .filters {
   margin-bottom: 20px;
 }
@@ -43,48 +38,35 @@ body {
   border-radius: 20px;
   margin-right: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .filters button.active {
-  background: #c8a27c;
+  background: #b08968;
   color: white;
 }
 
-/* LOADING */
 #loading {
   color: #9a6a4d;
-  font-size: 14px;
 }
 
-/* JOB CARD */
 .job-card {
   background: white;
-  padding: 22px;
+  padding: 20px;
   border-radius: 14px;
   margin-top: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-  transition: all 0.2s ease;
 }
 
-.job-card:hover {
-  transform: translateY(-2px);
-}
-
-/* TOP CARD (BEST MATCH) */
 .top-card {
   border: 2px solid #b08968;
   background: #fffaf5;
 }
 
-/* HEADER INSIDE CARD */
 .job-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
 }
 
-/* TITLE + COMPANY */
 .job-title {
   font-size: 18px;
   font-weight: 600;
@@ -92,56 +74,32 @@ body {
 
 .job-company {
   color: #888;
-  margin-top: 4px;
 }
 
-/* SCORE */
 .score {
   font-weight: 600;
   color: #b08968;
 }
 
-/* BADGE */
 .badge {
   font-size: 12px;
   color: #b08968;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-/* WHY SECTION */
 .why-title {
   font-weight: 600;
-  margin-top: 14px;
-  margin-bottom: 6px;
+  margin-top: 10px;
 }
 
 .why-list {
   padding-left: 18px;
-  margin-bottom: 10px;
 }
 
-.why-list li {
-  margin-bottom: 4px;
-  color: #444;
-}
-
-/* CONFIDENCE TEXT */
-.confidence {
-  font-size: 13px;
-  color: #7a6a58;
-  margin-bottom: 10px;
-}
-
-/* LINK */
 .job-link {
   display: inline-block;
-  margin-top: 6px;
-  color: #1a1a1a;
+  margin-top: 10px;
   text-decoration: none;
+  color: black;
   font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.job-link:hover {
-  opacity: 0.6;
 }
