@@ -18,7 +18,6 @@ async function loadJobs() {
     document.getElementById("last-updated").innerText =
       "Last updated: " + now.toLocaleString();
 
-    attachSlider();
     updateJobs();
 
   } catch (error) {
@@ -27,17 +26,6 @@ async function loadJobs() {
   }
 }
 
-function attachSlider() {
-  const slider = document.getElementById("exp-slider");
-  const value = document.getElementById("exp-value");
-
-  slider.addEventListener("input", () => {
-    userProfile.yearsExperience = parseInt(slider.value);
-    value.innerText = slider.value;
-
-    updateJobs();
-  });
-}
 
 function updateJobs() {
   allJobs = allJobs.map(job => {
@@ -105,11 +93,7 @@ function renderJobs() {
           <div class="job-title">${job.title}</div>
           <div class="job-company">${job.company}</div>
 
-          <div class="match-bar">
-            <div class="match-fill" style="width: ${job.score}%"></div>
-          </div>
-        </div>
-
+         
         <div class="score">${job.score}%</div>
       </div>
 
