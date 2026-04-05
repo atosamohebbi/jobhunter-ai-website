@@ -1,139 +1,44 @@
-let allJobs = [];
-let currentFilter = "all";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JobHunter AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-/* USER PROFILE (this makes it feel like AI) */
-const userProfile = {
-  role: "product",
-  yearsExperience: 3,
-  domains: ["saas", "b2b", "developer tools"]
-};
+  <div class="container">
 
-async function loadJobs() {
-  try {
-    const response = await fetch("./jobs.json");
-    allJobs = await response.json();
+    <div class="header">
+      <h1>Find roles that actually match you</h1>
+      <p class="subtitle">Not just keywords. Real fit based on your experience.</p>
+    </div>
 
-    // enrich jobs with score + reasons
-    allJobs = allJobs.map(job => {
-      const score = calculateScore(job);
-      const reasons = generateReasons(job);
+    <!-- USER CONTROLS (NEW 🔥) -->
+    <div class="controls">
+      <label>
+        Years of experience:
+        <span id="exp-value">3</span>
+      </label>
+      <input type="range" min="0" max="10" value="3" id="exp-slider" />
+    </div>
 
-      return { ...job, score, reasons };
-    });
+    <div class="meta">
+      <p id="last-updated"></p>
+    </div>
 
-    document.getElementById("loading").style.display = "none";
+    <div class="filters">
+      <button onclick="setFilter(event, 'all')" class="active">All</button>
+      <button onclick="setFilter(event, 'product')">Product</button>
+      <button onclick="setFilter(event, 'ux')">UX/UI</button>
+    </div>
 
-    const now = new Date();
-    document.getElementById("last-updated").innerText =
-      "Last updated: " + now.toLocaleString();
+    <p id="loading">Scanning job sources and ranking matches...</p>
 
-    renderJobs();
-  } catch (error) {
-    document.getElementById("loading").innerText = "Failed to load jobs.";
-    console.error(error);
-  }
-}
+    <div id="jobs-container"></div>
 
-/* SCORING LOGIC */
-function calculateScore(job) {
-  let score = 0;
+  </div>
 
-  if (job.category === userProfile.role) score += 40;
-
-  if (job.years_required <= userProfile.yearsExperience + 1) score += 25;
-
-  if (userProfile.domains.includes(job.domain)) score += 25;
-
-  return score;
-}
-
-/* REASONS LOGIC */
-function generateReasons(job) {
-  let reasons = [];
-
-  if (job.category === userProfile.role)
-    reasons.push("Matches your preferred role");
-
-  if (job.years_required <= userProfile.yearsExperience + 1)
-    reasons.push("Fits your experience level");
-
-  if (userProfile.domains.includes(job.domain))
-    reasons.push("Relevant industry experience");
-
-  if (job.years_required > userProfile.yearsExperience + 2)
-    reasons.push("Slight stretch opportunity");
-
-  return reasons;
-}
-
-function renderJobs() {
-  const container = document.getElementById("jobs-container");
-  container.innerHTML = "";
-
-  let filtered = allJobs;
-
-  if (currentFilter !== "all") {
-    filtered = allJobs.filter(job => job.category === currentFilter);
-  }
-
-  filtered.sort((a, b) => b.score - a.score);
-
-  filtered.forEach((job, index) => {
-    const div = document.createElement("div");
-    div.className = "job-card";
-
-    const isTop = index === 0;
-
-    div.innerHTML = `
-      ${isTop ? `<div class="badge">⭐ Best match for you</div>` : ""}
-
-      <div class="job-header">
-        <div>
-          <div class="job-title">${job.title}</div>
-          <div class="job-company">${job.company}</div>
-        </div>
-        <div class="score">${job.score}%</div>
-      </div>
-
-      <div class="why-title">Why this matches you</div>
-      <ul class="why-list">
-        ${job.reasons.map(r => `<li>${r}</li>`).join("")}
-      </ul>
-
-      <div class="confidence">
-        ${getConfidenceText(job.score)}
-      </div>
-
-      <a href="${job.url}" target="_blank" class="job-link">
-        View role →
-      </a>
-    `;
-
-    if (isTop) {
-      div.classList.add("top-card");
-    }
-
-    container.appendChild(div);
-  });
-}
-
-function getConfidenceText(score) {
-  if (score >= 90) return "🔥 Strong match based on your background";
-  if (score >= 70) return "👍 Solid fit with relevant experience";
-  if (score >= 50) return "⚡ Potential stretch opportunity";
-  return "💡 Lower match, but could be interesting";
-}
-
-function setFilter(event, filter) {
-  currentFilter = filter;
-
-  document.querySelectorAll(".filters button").forEach(btn => {
-    btn.classList.remove("active");
-  });
-
-  event.target.classList.add("active");
-
-  renderJobs();
-}
-
-loadJobs();
+  <script src="script.js"></script>
+</body>
+</html>
