@@ -1,10 +1,25 @@
 let allJobs = [];
 let currentFilter = "all";
 
+/* USER PROFILE (this makes it feel like AI) */
+const userProfile = {
+  role: "product",
+  yearsExperience: 3,
+  domains: ["saas", "b2b", "developer tools"]
+};
+
 async function loadJobs() {
   try {
     const response = await fetch("./jobs.json");
     allJobs = await response.json();
+
+    // enrich jobs with score + reasons
+    allJobs = allJobs.map(job => {
+      const score = calculateScore(job);
+      const reasons = generateReasons(job);
+
+      return { ...job, score, reasons };
+    });
 
     document.getElementById("loading").style.display = "none";
 
@@ -17,6 +32,38 @@ async function loadJobs() {
     document.getElementById("loading").innerText = "Failed to load jobs.";
     console.error(error);
   }
+}
+
+/* SCORING LOGIC */
+function calculateScore(job) {
+  let score = 0;
+
+  if (job.category === userProfile.role) score += 40;
+
+  if (job.years_required <= userProfile.yearsExperience + 1) score += 25;
+
+  if (userProfile.domains.includes(job.domain)) score += 25;
+
+  return score;
+}
+
+/* REASONS LOGIC */
+function generateReasons(job) {
+  let reasons = [];
+
+  if (job.category === userProfile.role)
+    reasons.push("Matches your preferred role");
+
+  if (job.years_required <= userProfile.yearsExperience + 1)
+    reasons.push("Fits your experience level");
+
+  if (userProfile.domains.includes(job.domain))
+    reasons.push("Relevant industry experience");
+
+  if (job.years_required > userProfile.yearsExperience + 2)
+    reasons.push("Slight stretch opportunity");
+
+  return reasons;
 }
 
 function renderJobs() {
@@ -53,18 +100,31 @@ function renderJobs() {
         ${job.reasons.map(r => `<li>${r}</li>`).join("")}
       </ul>
 
+      <div class="confidence">
+        ${getConfidenceText(job.score)}
+      </div>
+
       <a href="${job.url}" target="_blank" class="job-link">
         View role →
       </a>
     `;
 
-    if (isTop) div.classList.add("top-card");
+    if (isTop) {
+      div.classList.add("top-card");
+    }
 
     container.appendChild(div);
   });
 }
 
-function setFilter(filter) {
+function getConfidenceText(score) {
+  if (score >= 90) return "🔥 Strong match based on your background";
+  if (score >= 70) return "👍 Solid fit with relevant experience";
+  if (score >= 50) return "⚡ Potential stretch opportunity";
+  return "💡 Lower match, but could be interesting";
+}
+
+function setFilter(event, filter) {
   currentFilter = filter;
 
   document.querySelectorAll(".filters button").forEach(btn => {
