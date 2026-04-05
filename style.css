@@ -106,20 +106,6 @@ body {
   margin-bottom: 8px;
 }
 
-/* MATCH BAR */
-.match-bar {
-  height: 6px;
-  background: #eee;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.match-fill {
-  height: 100%;
-  background: #b08968;
-  transition: width 0.4s ease;
-}
-
 /* SCORE */
 .score {
   font-weight: 600;
