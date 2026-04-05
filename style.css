@@ -19,7 +19,22 @@ body {
 
 .subtitle {
   color: #6b6b6b;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+/* CONTROLS */
+.controls {
+  margin-bottom: 25px;
+}
+
+.controls label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+#exp-slider {
+  width: 100%;
 }
 
 /* META */
@@ -51,7 +66,6 @@ body {
 /* LOADING */
 #loading {
   color: #9a6a4d;
-  font-size: 14px;
 }
 
 /* JOB CARD */
@@ -79,7 +93,7 @@ body {
 .job-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .job-title {
@@ -89,6 +103,21 @@ body {
 
 .job-company {
   color: #888;
+  margin-bottom: 8px;
+}
+
+/* MATCH BAR */
+.match-bar {
+  height: 6px;
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.match-fill {
+  height: 100%;
+  background: #b08968;
+  transition: width 0.4s ease;
 }
 
 /* SCORE */
@@ -112,13 +141,13 @@ body {
 
 .why-list {
   padding-left: 18px;
-  margin-bottom: 10px;
 }
 
 /* CONFIDENCE */
 .confidence {
   font-size: 13px;
   color: #7a6a58;
+  margin-top: 8px;
 }
 
 /* LINK */
