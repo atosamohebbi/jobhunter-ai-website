@@ -11,22 +11,25 @@ body {
   padding: 0 20px;
 }
 
+/* HEADER */
 .header h1 {
   font-size: 36px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
-.tagline {
-  color: #7a6a58;
-  margin-bottom: 20px;
+.subtitle {
+  color: #6b6b6b;
+  margin-bottom: 30px;
 }
 
+/* META */
 .meta {
   font-size: 12px;
   color: #9a9a9a;
   margin-bottom: 20px;
 }
 
+/* FILTERS */
 .filters {
   margin-bottom: 20px;
 }
@@ -41,30 +44,42 @@ body {
 }
 
 .filters button.active {
-  background: #b08968;
+  background: #c8a27c;
   color: white;
 }
 
+/* LOADING */
 #loading {
   color: #9a6a4d;
+  font-size: 14px;
 }
 
+/* JOB CARD */
 .job-card {
   background: white;
   padding: 20px;
   border-radius: 14px;
   margin-top: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  transition: all 0.2s ease;
 }
 
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* TOP CARD */
 .top-card {
   border: 2px solid #b08968;
-  background: #fffaf5;
+  background: linear-gradient(135deg, #fffaf5, #fff);
 }
 
+/* HEADER ROW */
 .job-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .job-title {
@@ -76,17 +91,20 @@ body {
   color: #888;
 }
 
+/* SCORE */
 .score {
   font-weight: 600;
   color: #b08968;
 }
 
+/* BADGE */
 .badge {
   font-size: 12px;
   color: #b08968;
   margin-bottom: 8px;
 }
 
+/* WHY */
 .why-title {
   font-weight: 600;
   margin-top: 10px;
@@ -94,12 +112,20 @@ body {
 
 .why-list {
   padding-left: 18px;
+  margin-bottom: 10px;
 }
 
+/* CONFIDENCE */
+.confidence {
+  font-size: 13px;
+  color: #7a6a58;
+}
+
+/* LINK */
 .job-link {
   display: inline-block;
   margin-top: 10px;
   text-decoration: none;
-  color: black;
   font-weight: 500;
+  color: #1a1a1a;
 }
