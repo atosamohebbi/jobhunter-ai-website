@@ -14,6 +14,7 @@ async function loadJobs() {
 
     renderJobs();
   } catch (error) {
+    console.error(error);
     document.getElementById("loading").innerText = "Failed to load jobs.";
   }
 }
@@ -42,7 +43,7 @@ function renderJobs() {
       ${index === 0 ? `<div class="badge">⭐ Best match for you</div>` : ""}
 
       <div class="job-row">
-        
+
         <div class="job-left">
           <div class="job-title">${job.title}</div>
           <div class="job-company">${job.company}</div>
@@ -78,7 +79,7 @@ function getConfidenceText(score) {
   return "💡 Lower match, but could be interesting";
 }
 
-function setFilter(filter) {
+function setFilter(event, filter) {
   currentFilter = filter;
 
   document.querySelectorAll(".filters button").forEach(btn => {
