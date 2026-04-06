@@ -1,1 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JobHunter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <div class="container">
+
+    <h1>Find roles that actually match you</h1>
+    <p class="subtitle">Not just keywords. Real fit based on your experience.</p>
+
+    <p id="last-updated"></p>
+
+    <div class="filters">
+      <button onclick="setFilter(event, 'all')" class="active">All</button>
+      <button onclick="setFilter(event, 'product')">Product</button>
+      <button onclick="setFilter(event, 'ux')">UX/UI</button>
+    </div>
+
+    <p id="loading">Scanning job sources...</p>
+
+    <div id="jobs-container"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
