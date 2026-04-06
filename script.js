@@ -28,36 +28,37 @@ function renderJobs() {
     filtered = allJobs.filter(job => job.category === currentFilter);
   }
 
-  filtered.sort((a, b) => b.score - a.score);
+  filtered.sort((a, b) => (b.score || 0) - (a.score || 0));
 
   filtered.forEach((job, index) => {
-    const div = document.createElement("div");
-    div.className = "job-card";
+    const card = document.createElement("div");
+    card.className = "job-card";
 
-    const isTop = index === 0;
+    if (index === 0) {
+      card.classList.add("top-card");
+    }
 
-    div.innerHTML = `
-      ${isTop ? `<div class="badge">⭐ Best match for you</div>` : ""}
+    card.innerHTML = `
+      ${index === 0 ? `<div class="badge">⭐ Best match for you</div>` : ""}
 
       <div class="job-row">
-
+        
         <div class="job-left">
           <div class="job-title">${job.title}</div>
           <div class="job-company">${job.company}</div>
-          <div class="score">${job.score}%</div>
-        </div>
 
-        <div class="job-middle">
           <div class="why-title">Why this matches you</div>
           <ul class="why-list">
-            ${job.reasons.map(r => `<li>${r}</li>`).join("")}
+            ${(job.reasons || []).map(r => `<li>${r}</li>`).join("")}
           </ul>
+
           <div class="confidence">
-            ${getConfidenceText(job.score)}
+            ${getConfidenceText(job.score || 0)}
           </div>
         </div>
 
         <div class="job-right">
+          <div class="score">${job.score || 0}%</div>
           <a href="${job.url}" target="_blank" class="job-link">
             View role →
           </a>
@@ -66,11 +67,7 @@ function renderJobs() {
       </div>
     `;
 
-    if (isTop) {
-      div.classList.add("top-card");
-    }
-
-    container.appendChild(div);
+    container.appendChild(card);
   });
 }
 
