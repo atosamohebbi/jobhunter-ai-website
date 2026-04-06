@@ -4,6 +4,11 @@ let currentFilter = "all";
 async function loadJobs() {
   try {
     const response = await fetch("jobs.json");
+
+    if (!response.ok) {
+      throw new Error("jobs.json not found");
+    }
+
     allJobs = await response.json();
 
     document.getElementById("loading").style.display = "none";
@@ -13,7 +18,7 @@ async function loadJobs() {
 
     renderJobs();
   } catch (error) {
-    console.error(error);
+    console.error("LOAD ERROR:", error);
     document.getElementById("loading").innerText = "Failed to load jobs.";
   }
 }
@@ -26,7 +31,7 @@ function renderJobs() {
     ? allJobs
     : allJobs.filter(j => j.category === currentFilter);
 
-  jobs.sort((a, b) => b.score - a.score);
+  jobs.sort((a, b) => (b.score || 0) - (a.score || 0));
 
   jobs.forEach((job, index) => {
     const card = document.createElement("div");
@@ -41,18 +46,18 @@ function renderJobs() {
 
       <div class="row">
         <div>
-          <div class="title">${job.title}</div>
-          <div class="company">${job.company}</div>
+          <div class="title">${job.title || ""}</div>
+          <div class="company">${job.company || ""}</div>
 
           <ul>
             ${(job.reasons || []).map(r => `<li>${r}</li>`).join("")}
           </ul>
 
-          <div class="confidence">${getConfidence(job.score)}</div>
+          <div class="confidence">${getConfidence(job.score || 0)}</div>
         </div>
 
         <div class="right">
-          <div class="score">${job.score}%</div>
+          <div class="score">${job.score || 0}%</div>
           <a href="${job.url}" target="_blank">View role →</a>
         </div>
       </div>
@@ -72,7 +77,9 @@ function getConfidence(score) {
 function setFilter(e, filter) {
   currentFilter = filter;
 
-  document.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".filters button")
+    .forEach(b => b.classList.remove("active"));
+
   e.target.classList.add("active");
 
   renderJobs();
