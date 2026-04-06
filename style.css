@@ -27,7 +27,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* FILTERS */
 .filters {
   margin-bottom: 20px;
 }
@@ -47,6 +46,7 @@ body {
 }
 
 /* JOB CARD */
+
 .job-card {
   background: white;
   padding: 20px;
@@ -66,11 +66,10 @@ body {
   margin-bottom: 10px;
 }
 
-/* LAYOUT FIX */
 .job-row {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
 }
 
 .job-left {
@@ -85,6 +84,7 @@ body {
 }
 
 /* TEXT */
+
 .job-title {
   font-size: 18px;
   font-weight: 600;
@@ -112,6 +112,7 @@ body {
 }
 
 /* RIGHT SIDE */
+
 .score {
   font-weight: 600;
   color: #b08968;
