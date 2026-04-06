@@ -1,146 +1,91 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f8f6f3;
-  color: #1a1a1a;
-}
-
-.container {
-  max-width: 720px;
-  margin: 80px auto;
-  padding: 0 20px;
-}
-
-/* HEADER */
-.header h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.subtitle {
-  color: #6b6b6b;
-  margin-bottom: 20px;
-}
-
-/* CONTROLS */
-.controls {
-  margin-bottom: 25px;
-}
-
-.controls label {
-  font-size: 14px;
-  display: block;
-  margin-bottom: 6px;
-}
-
-#exp-slider {
-  width: 100%;
-}
-
-/* META */
-.meta {
-  font-size: 12px;
-  color: #9a9a9a;
-  margin-bottom: 20px;
-}
-
-/* FILTERS */
-.filters {
-  margin-bottom: 20px;
-}
-
-.filters button {
-  border: none;
-  background: #e7dfd8;
-  padding: 8px 14px;
-  border-radius: 20px;
-  margin-right: 8px;
-  cursor: pointer;
-}
-
-.filters button.active {
-  background: #c8a27c;
-  color: white;
-}
-
-/* LOADING */
-#loading {
-  color: #9a6a4d;
-}
-
-/* JOB CARD */
+/* CARD LAYOUT */
 .job-card {
   background: white;
-  padding: 20px;
+  padding: 22px;
   border-radius: 14px;
   margin-top: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-  transition: all 0.2s ease;
 }
 
-.job-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+/* GRID STRUCTURE */
+.job-row {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr auto;
+  gap: 24px;
+  align-items: start;
 }
 
-/* TOP CARD */
-.top-card {
-  border: 2px solid #b08968;
-  background: linear-gradient(135deg, #fffaf5, #fff);
-}
-
-/* HEADER ROW */
-.job-header {
+/* LEFT */
+.job-left {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .job-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .job-company {
   color: #888;
-  margin-bottom: 8px;
+  font-size: 14px;
 }
 
-/* SCORE */
 .score {
+  font-size: 14px;
   font-weight: 600;
   color: #b08968;
+}
+
+/* MIDDLE */
+.job-middle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.why-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.why-list {
+  padding-left: 18px;
+  margin: 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.confidence {
+  font-size: 13px;
+  color: #7a6a58;
+  margin-top: 4px;
+}
+
+/* RIGHT */
+.job-right {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.job-link {
+  white-space: nowrap;
+  font-weight: 500;
+  text-decoration: none;
+  color: #1a1a1a;
 }
 
 /* BADGE */
 .badge {
   font-size: 12px;
   color: #b08968;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-/* WHY */
-.why-title {
-  font-weight: 600;
-  margin-top: 10px;
-}
-
-.why-list {
-  padding-left: 18px;
-}
-
-/* CONFIDENCE */
-.confidence {
-  font-size: 13px;
-  color: #7a6a58;
-  margin-top: 8px;
-}
-
-/* LINK */
-.job-link {
-  display: inline-block;
-  margin-top: 10px;
-  text-decoration: none;
-  font-weight: 500;
-  color: #1a1a1a;
+/* TOP CARD */
+.top-card {
+  border: 2px solid #b08968;
+  background: #fffaf5;
 }
